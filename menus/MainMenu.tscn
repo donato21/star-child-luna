@@ -333,6 +333,10 @@ text = "In Development"
 align = 1
 valign = 1
 
+[node name="PopUpTimer" type="Timer" parent="CanvasLayer"]
+one_shot = true
+
 [connection signal="pressed" from="CanvasLayer/MenuButtons/Play" to="." method="_on_Play_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuButtons/Options" to="." method="_on_Options_pressed"]
 [connection signal="pressed" from="CanvasLayer/MenuButtons/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="timeout" from="CanvasLayer/PopUpTimer" to="." method="_on_PopUpTimer_timeout"]
