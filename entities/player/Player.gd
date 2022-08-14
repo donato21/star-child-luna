@@ -9,6 +9,9 @@ var dir : Vector2 = Vector2.ZERO
 var vel : Vector2 = Vector2.ZERO
 var facing : Vector2 = Vector2.ZERO
 
+func _ready():
+	$AnimatedSprite.play("idleB")
+
 func _input(_event):
 	dir = Vector2.ZERO
 	if Input.is_action_pressed("left"):
@@ -25,16 +28,6 @@ func _input(_event):
 		facing = Vector2.DOWN
 
 func _process(_delta):
-	if facing == Vector2.UP:
-		if vel.y < 0:
-			$AnimatedSprite.play("walkF")
-		if vel.y == 0:
-			$AnimatedSprite.play("idleF")
-	if facing == Vector2.DOWN:
-		if vel.y > 0:
-			$AnimatedSprite.play("walkB")
-		if vel.y == 0:
-			$AnimatedSprite.play("idleB")
 	if facing == Vector2.LEFT:
 		if vel.x < 0:
 			$AnimatedSprite.play("walkL")
@@ -45,5 +38,16 @@ func _process(_delta):
 			$AnimatedSprite.play("walkR")
 		if vel.x == 0:
 			$AnimatedSprite.play("idleR")
+	
+	if facing == Vector2.UP:
+		if vel.y < 0:
+			$AnimatedSprite.play("walkF")
+		if vel.y == 0:
+			$AnimatedSprite.play("idleF")
+	if facing == Vector2.DOWN:
+		if vel.y > 0:
+			$AnimatedSprite.play("walkB")
+		if vel.y == 0:
+			$AnimatedSprite.play("idleB")
 	
 	vel = move_and_slide(speed * dir)
