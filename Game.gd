@@ -14,11 +14,12 @@ func _ready():
 	load_and_add_scene(main_menu_path)
 
 func load_and_add_scene(path : String):
-	for child in get_children():
+	for child in $SceneManager.get_children():
 		child.queue_free()
 	var scene = load(path).instance()
-	add_child(scene)
+	$SceneManager.add_child(scene)
 	scene.connect("load_scene", self, "load_and_add_scene")
+	scene.connect("play_audio", self, "track_manager")
 
 func save_enemies(enemies_array : Array):
 	enemies = enemies_array
@@ -26,3 +27,16 @@ func save_enemies(enemies_array : Array):
 func load_enemies():
 	for enemy in enemies:
 		var new_enemy = load(enemy.path).instance()
+
+func track_manager(track : Dictionary):
+	# Check priority of track
+	if track.type == "loop":
+		$AudioManager/BGMusic.set_stream(track.path)
+		$AudioManager/BGMusic.play()
+	if track.type == "instant":
+		if !$AudioManager/Instant1.playing():
+			$AudioManager/Instant1.set_stream(track.path)
+			$AudioManager/Instant1.play()
+		else:
+			$AudioManager/Instant2.set_stream(track.path)
+			$AudioManager/Instant2.play()

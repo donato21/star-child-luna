@@ -5,3 +5,13 @@
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
 main_menu_path = "res://menus/MainMenu.tscn"
+
+[node name="SceneManager" type="Node2D" parent="."]
+
+[node name="AudioManager" type="Node2D" parent="."]
+
+[node name="BGMusic" type="AudioStreamPlayer" parent="AudioManager"]
+
+[node name="Instant1" type="AudioStreamPlayer" parent="AudioManager"]
+
+[node name="Instant2" type="AudioStreamPlayer" parent="AudioManager"]
