@@ -2,8 +2,10 @@ extends KinematicBody2D
 
 export var party : String
 export(int, "Left", "Right", "Forward", "Back") var starting_face
+export var base_damage : int = 1
+export var inv : Array = []
 
-export var speed : float = 50
+export var speed : int = 50
 var dir : Vector2 = Vector2.ZERO
 var vel : Vector2 = Vector2.ZERO
 
@@ -12,12 +14,16 @@ var facing : Vector2 = Vector2.ZERO
 func _ready():
 	if starting_face == 0:
 		$AnimatedSprite.play("idleL")
+		facing = Vector2.LEFT
 	if starting_face == 1:
 		$AnimatedSprite.play("idleR")
+		facing = Vector2.RIGHT
 	if starting_face == 2:
 		$AnimatedSprite.play("idleF")
+		facing = Vector2.UP
 	if starting_face == 3:
 		$AnimatedSprite.play("idleB")
+		facing = Vector2.DOWN
 
 func _process(delta):
 	if vel.x < 0:
