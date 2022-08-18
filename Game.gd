@@ -14,12 +14,15 @@ func _ready():
 	load_and_add_scene(main_menu_path)
 
 func load_and_add_scene(path : String):
-	for child in $SceneManager.get_children():
-		child.queue_free()
-	var scene = load(path).instance()
-	$SceneManager.add_child(scene)
-	scene.connect("load_scene", self, "load_and_add_scene")
-	scene.connect("play_audio", self, "track_manager")
+	if path != "":
+		for child in $SceneManager.get_children():
+			child.queue_free()
+		var scene = load(path).instance()
+		$SceneManager.add_child(scene)
+		scene.connect("load_scene", self, "load_and_add_scene")
+		scene.connect("play_audio", self, "track_manager")
+	else:
+		print("Game.gd|load_and_add_scene()|ERROR: path empty!")
 
 func save_enemies(enemies_array : Array):
 	enemies = enemies_array
