@@ -183,12 +183,9 @@ script = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -6 )
+scale = Vector2( -1, 1 )
 frames = SubResource( 33 )
-animation = "walkL"
+animation = "walkR"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 34 )
-
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-zoom = Vector2( 0.3, 0.3 )
