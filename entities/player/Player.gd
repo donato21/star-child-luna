@@ -5,6 +5,7 @@ signal area_entered
 signal item_equiped
 
 export var speed : int = 50
+export var gravity : float = 5
 var dir : Vector2 = Vector2.ZERO
 var vel : Vector2 = Vector2.ZERO
 
@@ -19,11 +20,11 @@ func _input(_event):
 	if Input.is_action_pressed("right"):
 		dir.x += 1
 		$AnimatedSprite.scale = Vector2(1,1)
-	if not is_on_floor():
-		dir.y += 0.2
 
 func _process(_delta):
-	if dir.x != 0 && is_on_floor():
+	if not is_on_floor():
+		dir.y += gravity
+	if dir.x != 0:
 		$AnimatedSprite.play("walkR")
 	else:
 		$AnimatedSprite.play("idleB")

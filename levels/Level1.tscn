@@ -1,24 +1,25 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://levels/Level1.gd" type="Script" id=1]
-[ext_resource path="res://assets/levels/test-gwj-moon.png" type="Texture" id=2]
+[ext_resource path="res://assets/levels/LVL0_complete.png" type="Texture" id=2]
 [ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://levels/Camera2D.gd" type="Script" id=4]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 622, 10 )
-
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 20, 225.5 )
+extents = Vector2( 20, 304 )
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 28.5, 254 )
+extents = Vector2( 28.5, 297.5 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 777, 16 )
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 1 )
 
 [node name="Test-gwj-moon" type="Sprite" parent="."]
-position = Vector2( 3, -176 )
+position = Vector2( 3, -170 )
+scale = Vector2( 0.188833, 0.188833 )
 texture = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 3 )]
@@ -26,23 +27,43 @@ texture = ExtResource( 2 )
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( 2.5, 18 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-position = Vector2( 4.5, 0 )
-shape = SubResource( 1 )
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Floor"]
+polygon = PoolVector2Array( -753.5, 102, -764.5, 103, -766.5, 82, -458.5, 82, -354.5, 64, -207.5, 35, -93.5, 10, -66.5, 5, -38.5, -14, 29.5, -13, 58.5, 11, 235.5, 8, 306.5, -4, 370.5, -9, 448.5, -12, 472.5, -20, 495.5, -43, 528.5, -76, 576.5, -95, 622.5, -92, 691.5, -91, 744.5, -104, 746.5, 90 )
 
 [node name="Wall" type="StaticBody2D" parent="."]
-position = Vector2( -640, 18 )
+position = Vector2( -783, 18 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
-position = Vector2( 4.5, -215.5 )
+position = Vector2( 4.5, -181 )
 shape = SubResource( 2 )
 
+[node name="Level2" type="Area2D" parent="Wall"]
+position = Vector2( 41, -18 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall/Level2"]
+position = Vector2( -3.5, -158.5 )
+shape = SubResource( 3 )
+
 [node name="Wall2" type="StaticBody2D" parent="."]
-position = Vector2( 643, 18 )
+position = Vector2( 758, 39 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
 position = Vector2( 4.5, -215.5 )
 shape = SubResource( 2 )
+
+[node name="Level3" type="Area2D" parent="Wall2"]
+position = Vector2( -3, -19 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2/Level3"]
+position = Vector2( -3.5, -183 )
+shape = SubResource( 3 )
+
+[node name="Wall3" type="StaticBody2D" parent="."]
+position = Vector2( 643, 18 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3"]
+position = Vector2( -649, -473 )
+shape = SubResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 0, -176 )
@@ -56,26 +77,12 @@ bottom_right = NodePath("../BottomRight")
 player = NodePath("../Player")
 
 [node name="TopLeft" type="Position2D" parent="."]
-position = Vector2( -559, -400 )
+position = Vector2( -712, -444 )
 scale = Vector2( 0.0522487, 0.0522487 )
 
 [node name="BottomRight" type="Position2D" parent="."]
-position = Vector2( 590, 33 )
+position = Vector2( 716, 106 )
 scale = Vector2( 0.0522487, 0.0522487 )
 
-[node name="Level2" type="Area2D" parent="."]
-position = Vector2( -599, 0 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level2"]
-position = Vector2( -3.5, -183 )
-shape = SubResource( 3 )
-
-[node name="Level3" type="Area2D" parent="."]
-position = Vector2( 640, -1 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Level3"]
-position = Vector2( -3.5, -183 )
-shape = SubResource( 3 )
-
-[connection signal="body_entered" from="Level2" to="." method="_on_Level2_body_entered"]
-[connection signal="body_entered" from="Level3" to="." method="_on_Level3_body_entered"]
+[connection signal="body_entered" from="Wall/Level2" to="." method="_on_Level2_body_entered"]
+[connection signal="body_entered" from="Wall2/Level3" to="." method="_on_Level3_body_entered"]
