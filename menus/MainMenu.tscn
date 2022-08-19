@@ -1,98 +1,9 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://assets/menus/main/luna-logo.png" type="Texture" id=1]
-[ext_resource path="res://assets/menus/main/moon-da.png" type="Texture" id=2]
+[ext_resource path="res://assets/menus/main/Lunara-Title-char.png" type="Texture" id=1]
+[ext_resource path="res://assets/menus/main/Moon_logo_trans.png" type="Texture" id=2]
 [ext_resource path="res://assets/menus/main/space-bg.jpg" type="Texture" id=3]
-[ext_resource path="res://assets/anims/rotate.gd" type="Script" id=4]
 [ext_resource path="res://menus/MainMenu.gd" type="Script" id=5]
-
-[sub_resource type="Animation" id=4]
-length = 0.001
-tracks/0/type = "bezier"
-tracks/0/path = NodePath(".:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"points": PoolRealArray( 682, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/1/type = "bezier"
-tracks/1/path = NodePath(".:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"points": PoolRealArray( 382, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/2/type = "bezier"
-tracks/2/path = NodePath(".:scale:x")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-tracks/3/type = "bezier"
-tracks/3/path = NodePath(".:scale:y")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0 )
-}
-
-[sub_resource type="Animation" id=5]
-resource_name = "bg-zoom"
-length = 80.0
-loop = true
-tracks/0/type = "bezier"
-tracks/0/path = NodePath(".:position:x")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"points": PoolRealArray( 682, -0.25, 0, 0.25, 0, 534.372, -0.25, 0, 0.25, 0, 682, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 40, 80 )
-}
-tracks/1/type = "bezier"
-tracks/1/path = NodePath(".:position:y")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"points": PoolRealArray( 382, -0.25, 0, 0.25, 0, 299, -0.25, 0, 0.25, 0, 382, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 40, 80 )
-}
-tracks/2/type = "bezier"
-tracks/2/path = NodePath(".:scale:x")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.783854, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 40, 80 )
-}
-tracks/3/type = "bezier"
-tracks/3/path = NodePath(".:scale:y")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0.783854, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
-"times": PoolRealArray( 0, 40, 80 )
-}
 
 [sub_resource type="Animation" id=6]
 length = 0.001
@@ -225,9 +136,53 @@ tracks/3/keys = {
 "times": PoolRealArray( 0, 0.3 )
 }
 
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Luna-logo:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 519, 111 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Luna-logo:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.104489, 0.104489 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "bob"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Luna-logo:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5, 3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 519, 105 ), Vector2( 519, 115 ), Vector2( 519, 105 ) ]
+}
+
 [sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0.00558659, 1 )
-colors = PoolColorArray( 0, 0, 0, 0.745098, 0, 0, 0, 0 )
+offsets = PoolRealArray( 0, 0.189944, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.0774455, 0.0907219, 0.150466, 0.564246, 0.137255, 0.160784, 0.266667, 1 )
 
 [sub_resource type="GradientTexture2D" id=2]
 gradient = SubResource( 1 )
@@ -235,7 +190,7 @@ fill_from = Vector2( 0, 1 )
 fill_to = Vector2( 0, 0 )
 
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.333333, 0.270588, 0.776471, 1 )
+bg_color = Color( 0.247059, 0.301961, 0.556863, 1 )
 
 [sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.913725, 0.913725, 0.913725, 1 )
@@ -245,16 +200,15 @@ script = ExtResource( 5 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="BGZoom" type="AnimationPlayer" parent="CanvasLayer"]
-root_node = NodePath("../Space-bg")
-autoplay = "bg-zoom"
-anims/RESET = SubResource( 4 )
-anims/bg-zoom = SubResource( 5 )
-
 [node name="OptionsPopUp" type="AnimationPlayer" parent="CanvasLayer"]
 anims/RESET = SubResource( 6 )
 anims/hide = SubResource( 7 )
 anims/show = SubResource( 8 )
+
+[node name="BobbingLogo" type="AnimationPlayer" parent="CanvasLayer"]
+autoplay = "bob"
+anims/RESET = SubResource( 10 )
+anims/bob = SubResource( 11 )
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 margin_right = 1024.0
@@ -263,27 +217,25 @@ color = Color( 0.137878, 0.0994263, 0.140625, 1 )
 
 [node name="Space-bg" type="Sprite" parent="CanvasLayer"]
 modulate = Color( 1, 1, 1, 0.654902 )
-position = Vector2( 682, 382 )
+position = Vector2( 534.372, 299 )
+scale = Vector2( 0.784, -0.784 )
 texture = ExtResource( 3 )
 
-[node name="Moon-da" type="Sprite" parent="CanvasLayer"]
-position = Vector2( 111, 452 )
-scale = Vector2( 1.35164, 1.35164 )
-texture = ExtResource( 2 )
-script = ExtResource( 4 )
-speed = 0.02
-
-[node name="Luna-logo" type="Sprite" parent="CanvasLayer"]
-position = Vector2( 506, 96 )
-scale = Vector2( 0.929955, 0.929955 )
+[node name="Lunara-Title-char" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 199, 385 )
+scale = Vector2( 0.815287, 0.815287 )
 texture = ExtResource( 1 )
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-margin_top = -112.0
 margin_right = 1024.0
-margin_bottom = 600.0
+margin_bottom = 712.0
 texture = SubResource( 2 )
 expand = true
+
+[node name="Luna-logo" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 519, 111 )
+scale = Vector2( 0.104489, 0.104489 )
+texture = ExtResource( 2 )
 
 [node name="MenuButtons" type="VBoxContainer" parent="CanvasLayer"]
 anchor_left = 0.02
@@ -291,9 +243,9 @@ anchor_top = 0.033
 anchor_right = 0.02
 anchor_bottom = 0.033
 margin_left = 410.52
-margin_top = 267.2
+margin_top = 297.2
 margin_right = 597.52
-margin_bottom = 409.2
+margin_bottom = 439.2
 rect_clip_content = true
 custom_constants/separation = 12
 
