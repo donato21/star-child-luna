@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://levels/level0/Camera2D.gd" type="Script" id=1]
+
+[node name="Camera2D" type="Camera2D"]
+position = Vector2( 0, -432 )
+current = true
+zoom = Vector2( 3, 3 )
+limit_smoothed = true
+script = ExtResource( 1 )
+top_left = NodePath("../TopLeft")
+bottom_right = NodePath("../BottomRight")
+player = NodePath("../Player")
