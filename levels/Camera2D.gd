@@ -11,10 +11,13 @@ func _ready():
 	bounds.left = top_left.get_global_position().x
 	bounds.bottom = bottom_right.get_global_position().y
 	bounds.right = bottom_right.get_global_position().x
-
-func _process(_delta):
 	set_limit(MARGIN_TOP, bounds.top)
 	set_limit(MARGIN_RIGHT, bounds.right)
 	set_limit(MARGIN_BOTTOM, bounds.bottom)
 	set_limit(MARGIN_LEFT, bounds.left)
-	set_position(player.global_position)
+
+#func _process(_delta):
+#	position = lerp(position, player.position, 0.1)
+
+func _physics_process(_delta):
+	position = lerp(position, player.position, 0.1)

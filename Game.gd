@@ -32,14 +32,21 @@ func load_enemies():
 		var new_enemy = load(enemy.path).instance()
 
 func track_manager(track : Dictionary):
-	# Check priority of track
-	if track.type == "loop":
-		$AudioManager/BGMusic.set_stream(track.path)
-		$AudioManager/BGMusic.play()
-	if track.type == "instant":
-		if !$AudioManager/Instant1.playing():
-			$AudioManager/Instant1.set_stream(track.path)
-			$AudioManager/Instant1.play()
-		else:
-			$AudioManager/Instant2.set_stream(track.path)
-			$AudioManager/Instant2.play()
+	if track.path != "":
+		# Check priority of track
+		if track.type == "loop":
+			$AudioManager/BGMusic.set_stream(track.path)
+			$AudioManager/BGMusic.play()
+		if track.type == "instant":
+			if !$AudioManager/Instant1.playing():
+				$AudioManager/Instant1.set_stream(track.path)
+				$AudioManager/Instant1.play()
+			else:
+				$AudioManager/Instant2.set_stream(track.path)
+				$AudioManager/Instant2.play()
+	else:
+		print("Game.gd|track_manager()|ERROR: track path empty!")
+
+func _input(_event):
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().quit()
