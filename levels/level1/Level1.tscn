@@ -19,11 +19,11 @@ texture = ExtResource( 4 )
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-polygon = PoolVector2Array( -2438, -164, -1840, -47, -1187, 477, -1033, 574, -570, 662, -150, 508, 122, 298, 463, 164, 590, 176, 768, 180, 897, 247, 1086, 412, 1311, 496, 1512, 529, 1783, 543, 1957, 532, 2283, 485, 2287, 1204, -2472, 1305 )
+position = Vector2( 0, 63 )
+polygon = PoolVector2Array( -2438, -164, -1840, -47, -1187, 477, -1025, 563, -555, 603, -150, 508, 335, 213, 737, 213, 1117, 405, 1505, 497, 1783, 497, 2029, 465, 2283, 465, 2287, 1204, -2472, 1305 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -1879, -249 )
-scale = Vector2( 0.351, 0.351 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 5 )]
 
