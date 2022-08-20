@@ -196,6 +196,7 @@ bg_color = Color( 0.913725, 0.913725, 0.913725, 1 )
 
 [node name="MainMenu" type="Node2D"]
 script = ExtResource( 5 )
+on_play_scene_path = "res://levels/level0/Level0.tscn"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

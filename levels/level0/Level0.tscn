@@ -1,0 +1,189 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://levels/level0/Camera2D.gd" type="Script" id=2]
+[ext_resource path="res://levels/level0/Level0.gd" type="Script" id=3]
+[ext_resource path="res://assets/levels/lvl0/FG_REEDS.png" type="Texture" id=4]
+[ext_resource path="res://assets/levels/lvl0/FG_vines.png" type="Texture" id=5]
+[ext_resource path="res://assets/levels/lvl0/MOON.png" type="Texture" id=6]
+[ext_resource path="res://assets/levels/lvl0/GROUND-BACKGROUND.png" type="Texture" id=7]
+[ext_resource path="res://assets/levels/lvl0/FG_BUSH.png" type="Texture" id=8]
+[ext_resource path="res://assets/levels/lvl0/MOUNTAINS.png" type="Texture" id=9]
+[ext_resource path="res://assets/particles/stars.png" type="Texture" id=10]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0.00495049, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.504951, 0.5125 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.268156, 0.726257, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.592179, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.230062, 0.226502, 0.682171, 0.682171, 0.33725, 0.332031, 1, 1 )
+
+[sub_resource type="GradientTexture2D" id=4]
+gradient = SubResource( 3 )
+fill_from = Vector2( 1, 0 )
+fill_to = Vector2( 1, 1 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 200, 2000 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 4500, 200 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 150, 500 )
+
+[node name="Level0" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="BGParallax" type="ParallaxBackground" parent="."]
+
+[node name="SkyParallax" type="ParallaxLayer" parent="BGParallax"]
+motion_scale = Vector2( 0.2, 1 )
+motion_mirroring = Vector2( 8000, 0 )
+
+[node name="Sky" type="ColorRect" parent="BGParallax/SkyParallax"]
+margin_left = -3999.84
+margin_top = -2729.03
+margin_right = 4000.16
+margin_bottom = 270.973
+color = Color( 0.0509804, 0.0470588, 0.117647, 1 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="BGParallax/SkyParallax/Sky"]
+position = Vector2( 3999.84, 2311.03 )
+amount = 1000
+lifetime = 10.0
+lifetime_randomness = 0.21
+fixed_fps = 24
+texture = ExtResource( 10 )
+emission_shape = 1
+emission_sphere_radius = 2000.0
+gravity = Vector2( 0, 0 )
+scale_amount = 0.1
+scale_amount_random = 0.31
+scale_amount_curve = SubResource( 1 )
+color_ramp = SubResource( 2 )
+
+[node name="MoonParallax" type="ParallaxLayer" parent="BGParallax"]
+motion_scale = Vector2( 0.2, 1 )
+motion_mirroring = Vector2( 8000, 0 )
+
+[node name="Moon" type="Sprite" parent="BGParallax/MoonParallax"]
+modulate = Color( 0.0666667, 0.0313726, 0.14902, 1 )
+position = Vector2( 1457.93, -304 )
+texture = ExtResource( 6 )
+
+[node name="MountainParallax" type="ParallaxLayer" parent="BGParallax"]
+motion_scale = Vector2( 0.7, 1 )
+motion_mirroring = Vector2( 8000, 0 )
+
+[node name="Mountains" type="Sprite" parent="BGParallax/MountainParallax"]
+modulate = Color( 0.239216, 0.192157, 0.368627, 1 )
+position = Vector2( 0, -326 )
+texture = ExtResource( 9 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="BGParallax"]
+motion_scale = Vector2( 0, 1 )
+motion_mirroring = Vector2( 8000, 0 )
+
+[node name="TextureRect" type="TextureRect" parent="BGParallax/ParallaxLayer"]
+modulate = Color( 1, 1, 1, 0.709804 )
+margin_left = -4000.0
+margin_top = -2729.0
+margin_right = 4000.0
+margin_bottom = 271.0
+texture = SubResource( 4 )
+expand = true
+
+[node name="Ground-Background" type="Sprite" parent="."]
+modulate = Color( 0.666667, 0.72549, 0.996078, 1 )
+position = Vector2( 0, -1229 )
+texture = ExtResource( 7 )
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, -592 )
+scale = Vector2( 0.350802, 0.350802 )
+
+[node name="FGParallax" type="ParallaxBackground" parent="."]
+layer = 2
+
+[node name="ReedParallax" type="ParallaxLayer" parent="FGParallax"]
+
+[node name="FgReeds" type="Sprite" parent="FGParallax/ReedParallax"]
+modulate = Color( 0.372549, 0.309804, 0.6, 1 )
+position = Vector2( 0, -1229 )
+texture = ExtResource( 4 )
+
+[node name="BushParallax" type="ParallaxLayer" parent="FGParallax"]
+motion_scale = Vector2( 0.99, 1 )
+
+[node name="FgBush" type="Sprite" parent="FGParallax/BushParallax"]
+modulate = Color( 0.439216, 0.427451, 0.513726, 1 )
+position = Vector2( 0, -1229 )
+texture = ExtResource( 8 )
+
+[node name="VineParallax" type="ParallaxLayer" parent="FGParallax"]
+
+[node name="FgVines" type="Sprite" parent="FGParallax/VineParallax"]
+modulate = Color( 0.447059, 0.376471, 0.596078, 1 )
+position = Vector2( 0, -1229 )
+texture = ExtResource( 5 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 0, -432 )
+current = true
+zoom = Vector2( 3, 3 )
+limit_smoothed = true
+script = ExtResource( 2 )
+top_left = NodePath("../TopLeft")
+bottom_right = NodePath("../BottomRight")
+player = NodePath("../Player")
+
+[node name="TopLeft" type="Position2D" parent="."]
+position = Vector2( -4000, -2729 )
+scale = Vector2( 0.0522487, 0.0522487 )
+
+[node name="BottomRight" type="Position2D" parent="."]
+position = Vector2( 4000, 271 )
+scale = Vector2( 0.0522487, 0.0522487 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PoolVector2Array( -4319, 259, -4039, 206, -2069, 221, -1071, -60, -355, -202, -204, -293, 151, -300, 294, -198, 533, -134, 1292, -179, 1767, -240, 2303, -255, 2590, -361, 2953, -685, 3315, -700, 3738, -700, 4131, -874, 4516, -874, 4561, 1263, -4447, 1225 )
+
+[node name="LeftWall" type="StaticBody2D" parent="."]
+position = Vector2( -4438, -942 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftWall"]
+shape = SubResource( 5 )
+
+[node name="RightWall" type="StaticBody2D" parent="."]
+position = Vector2( 4476, -942 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightWall"]
+shape = SubResource( 5 )
+
+[node name="Ceiling" type="StaticBody2D" parent="."]
+position = Vector2( 10, -2929 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ceiling"]
+shape = SubResource( 6 )
+
+[node name="LeftLevelArea" type="Area2D" parent="."]
+position = Vector2( -4147, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftLevelArea"]
+shape = SubResource( 7 )
+
+[node name="RightLevelArea" type="Area2D" parent="."]
+position = Vector2( 4149, -1216 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightLevelArea"]
+shape = SubResource( 7 )
+
+[connection signal="body_entered" from="LeftLevelArea" to="." method="_on_LeftLevelArea_body_entered"]
+[connection signal="body_entered" from="RightLevelArea" to="." method="_on_RightLevelArea_body_entered"]
