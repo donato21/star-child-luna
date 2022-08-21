@@ -2,6 +2,9 @@ extends Node2D
 
 signal load_scene
 signal play_audio
+signal game_over
+signal dialog
+signal add_inv
 
 export var level_theme_path : String = ""
 export var left_level_path : String = ""

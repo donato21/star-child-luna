@@ -2,6 +2,9 @@ extends Node2D
 
 signal load_scene
 signal play_audio
+signal game_over
+signal dialog
+signal add_inv
 
 export var menu_theme_path: String
 export var on_play_scene_path: String = "res://levels/Level1.tscn"

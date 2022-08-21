@@ -5,6 +5,9 @@ export var level_0_path : String
 
 signal scene_loaded
 
+var player_inv: Array = []
+var items: Array = ["cape","ring","wings","shield"]
+
 func _ready():
 	$CanvasLayer/Black.visible = true
 	$CanvasLayer/Black/ColorRect.set_modulate(Color(255,255,255,255))
@@ -16,6 +19,9 @@ func _ready():
 	scene.connect("play_audio", self, "track_manager")
 	scene.connect("game_over", self, "game_over")
 	scene.connect("dialog", self, "dialog")
+	scene.connect("add_inv", self, "add_to_inventory")
+	if scene.get_node("Player") != null:
+		scene.get_node("Player").inv = player_inv
 	$CanvasLayer/Animations.play("fade_in")
 	yield($CanvasLayer/Animations,"animation_finished")
 	$CanvasLayer/Black.visible = false
@@ -72,6 +78,32 @@ func dialog(text):
 	$CanvasLayer/Text.visible = false
 	$CanvasLayer/Text/ColorRect/Label.set_text("")
 
+func add_to_inventory(item: String):
+	if item in items:
+		player_inv.append(item)
+		if item == "cape":
+			add_cape()
+		if item == "ring":
+			add_ring()
+		if item == "wings":
+			add_wings()
+		if item == "shield":
+			add_shield()
+	else:
+		print("Game:add_to_inventory: Item invalid")
+
+func add_cape():
+	print("Cape added to inventory")
+
+func add_ring():
+	print("Ring added to inventory")
+
+func add_wings():
+	print("Wings added to inventory")
+
+func add_shield():
+	print("Shield added to inventory")
+
 func game_over(death):
 	if death == "snake":
 		snake_death()
@@ -87,25 +119,26 @@ func death():
 	yield(self,"scene_loaded")
 	$Timer.start()
 	yield($Timer,"timeout")
-	dialog("What a terrible dream...")
+	dialog(["[You feel well-rested]","Lunara: What a terrible dream..."])
 
 func snake_death():
 	load_and_add_scene(level_0_path)
 	yield(self,"scene_loaded")
 	$Timer.start()
 	yield($Timer,"timeout")
-	dialog("I think I should be more careful...")
+	dialog(["[You feel well-rested]","Lunara: I think I should be more careful..."])
 
 func queen_death():
 	load_and_add_scene(level_0_path)
 	yield(self,"scene_loaded")
 	$Timer.start()
 	yield($Timer,"timeout")
-	dialog("Maybe if I hide behind the reeds?")
+	var lines = ["I cannot attack her head on","What a strong creature","I need to stay back","How can I avoid the attacks?","I know I can do this","There must be a better way..."]
+	dialog(["[You feel well-rested]",lines[round(rand_range(-0.4,lines.size()+0.4))]])
 
 func frog_death():
 	load_and_add_scene(level_0_path)
 	yield(self,"scene_loaded")
 	$Timer.start()
 	yield($Timer,"timeout")
-	dialog("This will be tough!")
+	dialog(["[You feel well-rested]","Lunara: I can't give up now, I'm almost done..."])

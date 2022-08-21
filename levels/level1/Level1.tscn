@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/level1/Level1.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://assets/levels/lvl1/ForestFG.png" type="Texture" id=4]
 [ext_resource path="res://levels/Camera2D.tscn" type="PackedScene" id=5]
 [ext_resource path="res://entities/enemies/Snake.tscn" type="PackedScene" id=6]
+[ext_resource path="res://entities/items/Item.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/items/capa.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 100, 1000 )
@@ -43,6 +45,13 @@ polygon = PoolVector2Array( -2438, -164, -1840, -47, -1187, 477, -1025, 563, -55
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -1879, -159 )
+sprite_x_scale = -1
+
+[node name="Item" parent="." instance=ExtResource( 7 )]
+position = Vector2( 1886, 477 )
+scale = Vector2( 0.598068, 0.598068 )
+title = "cape"
+image = ExtResource( 8 )
 
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color( 1, 1, 1, 0.588235 )

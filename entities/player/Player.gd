@@ -1,12 +1,8 @@
 extends KinematicBody2D
 
-signal player_dead
-signal area_entered
-signal item_equiped
-signal play_audio
-
 export var walk_sound_path: String = ""
 export(String, "loop", "instant") var walk_sound_type = "instant"
+export var sprite_x_scale: int = 1
 
 var speed : int = 100
 var gravity : int = 100
@@ -18,10 +14,10 @@ var dir : Vector2 = Vector2.ZERO
 var vel : Vector2 = Vector2.ZERO
 
 var flying = false
-
-var inv = {}
+var inv = []
 
 func _ready():
+	$AnimatedSprite.scale.x = sprite_x_scale
 	$AnimatedSprite.play("idle")
 
 func _physics_process(_delta):
@@ -38,7 +34,6 @@ func _physics_process(_delta):
 	else:
 		if ($RayCast2D.is_colliding() || is_on_floor()) && abs(vel.x) > 50:
 			$AnimatedSprite.play("walk")
-			emit_signal("play_audio", {"path": walk_sound_path, "type":walk_sound_type})
 		else:
 			$AnimatedSprite.play("idle")
 	if is_on_floor() and dir.x == 0:

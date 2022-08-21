@@ -1,16 +1,19 @@
 extends Node2D
 
-var min_sleep_time: float = 3
-var max_sleep_time: float = 6
-var min_wake_time: float = 2
-var max_wake_time: float = 4
-export var delay: float = 0
 export var awake_sound_path: String = ""
 export var sleep_sound_path: String = ""
 
 signal game_over
 
 var sleeping = true
+var min_sleep_time: float = 3
+var max_sleep_time: float = 6
+var min_wake_time: float = 2
+var max_wake_time: float = 4
+
+func _ready():
+	$Timer.set_wait_time(rand_range(min_sleep_time, max_sleep_time))
+	$Timer.start()
 
 func _on_SleepTimer_timeout():
 	if sleeping:
@@ -34,5 +37,4 @@ func _on_Area2D_body_entered(body):
 		kill_player()
 
 func kill_player():
-	print("player should be dead...")
-	emit_signal("game_over","snake")
+	get_parent().emit_signal("game_over","snake")
