@@ -8,7 +8,15 @@ signal scene_loaded
 var player_inv: Array = []
 var items: Array = ["cape","ring","wings","shield"]
 
+var volume = {"PrimaryBG":0.0,"Secondary":0.0}
+var audio_fade_in_length = 3
+
 func _ready():
+	volume.PrimaryBG = $AudioManager/PrimaryBG.get_volume_db()
+	volume.Secondary = $AudioManager/Secondary.get_volume_db()
+	$AudioManager/PrimaryBG.set_volume_db(-80)
+	$AudioManager/Secondary.set_volume_db(-80)
+	
 	$CanvasLayer/Black.visible = true
 	$CanvasLayer/Black/ColorRect.set_modulate(Color(255,255,255,255))
 	for child in $SceneManager.get_children():
@@ -16,53 +24,83 @@ func _ready():
 	var scene = load(main_menu_path).instance()
 	$SceneManager.add_child(scene)
 	scene.connect("load_scene", self, "load_and_add_scene")
-	scene.connect("play_audio", self, "track_manager")
 	$CanvasLayer/Animations.play("fade_in")
+	if "primary_audio" in scene:
+		audio_manager(scene.primary_audio, "primary")
+	if "secondary_audio" in scene:
+		audio_manager(scene.secondary_audio, "secondary")
 	yield($CanvasLayer/Animations,"animation_finished")
+	yield($AudioManager/Tween,"tween_all_completed")
 	$CanvasLayer/Black.visible = false
+
+func _input(_event):
+	if Input.is_action_just_pressed("ui_cancel"):
+		get_tree().quit()
 
 func load_and_add_scene(path : String):
 	if path != "":
 		$CanvasLayer/Black.visible = true
 		$CanvasLayer/Animations.play("fade_out")
+		fade_out($AudioManager/PrimaryBG)
+		fade_out($AudioManager/Secondary)
 		yield($CanvasLayer/Animations,"animation_finished")
+		yield($AudioManager/Tween,"tween_all_completed")
 		for child in $SceneManager.get_children():
 			child.queue_free()
 		var scene = load(path).instance()
 		$SceneManager.add_child(scene)
 		scene.connect("load_scene", self, "load_and_add_scene")
-		scene.connect("play_audio", self, "track_manager")
 		scene.connect("game_over", self, "game_over")
 		scene.connect("dialog", self, "dialog")
 		scene.connect("add_inv", self, "add_to_inventory")
 		if scene.get_node("Player") != null:
 			scene.get_node("Player").inv = player_inv
 		$CanvasLayer/Animations.play("fade_in")
+		if "primary_audio" in scene:
+			audio_manager(scene.primary_audio, "primary")
+		if "secondary_audio" in scene:
+			audio_manager(scene.secondary_audio, "secondary")
 		yield($CanvasLayer/Animations,"animation_finished")
+		yield($AudioManager/Tween,"tween_all_completed")
 		$CanvasLayer/Black.visible = false
 		emit_signal("scene_loaded")
 	else:
 		print("Game.gd|load_and_add_scene()|ERROR: path empty!")
 
-func track_manager(track : Dictionary):
-	if track.path != "":
-		# Check priority of track
-		if track.type == "loop":
-			$AudioManager/BGMusic.set_stream(track.path)
-			$AudioManager/BGMusic.play()
-		if track.type == "instant":
-			if !$AudioManager/Instant1.playing():
-				$AudioManager/Instant1.set_stream(track.path)
-				$AudioManager/Instant1.play()
-			else:
-				$AudioManager/Instant2.set_stream(track.path)
-				$AudioManager/Instant2.play()
+func audio_manager(audio: AudioStream,track: String):
+	if audio != null:
+		if track == "primary":
+			$AudioManager/PrimaryBG.set_stream(audio)
+			fade_in($AudioManager/PrimaryBG)
+		elif track == "secondary":
+			$AudioManager/Secondary.set_stream(audio)
+			fade_in($AudioManager/Secondary)
+		else:
+			print("game.gd|audio|Error: not valid track")
 	else:
-		print("Game.gd|track_manager()|ERROR: track path empty!")
+		print("game.gd|audio|Error: Not valid audiostream")
 
-func _input(_event):
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().quit()
+func fade_out(stream_player: AudioStreamPlayer):
+	print("fade_out called")
+	# tween music volume down to 0
+	$AudioManager/Tween.interpolate_property(stream_player, "volume_db", 
+		stream_player.get_volume_db(), -80, 2, Tween.TRANS_LINEAR, Tween.EASE_IN, 0)
+	$AudioManager/Tween.start()
+	yield($AudioManager/Tween,"tween_completed")
+	stream_player.stop()
+
+func fade_in(stream_player: AudioStreamPlayer):
+	print("fade_in called")
+	# tween music volume up from -80
+	var target_vol = 0.0
+	if stream_player.name == volume.keys()[0]:
+		target_vol = volume.PrimaryBG
+	else:
+		target_vol = volume.Secondary
+	$AudioManager/Tween.interpolate_property(stream_player, "volume_db", 
+		-40, target_vol, audio_fade_in_length, Tween.TRANS_LINEAR, Tween.EASE_IN, 0)
+	$AudioManager/Tween.start()
+	stream_player.play()
 
 func dialog(text):
 	$CanvasLayer/Text.visible = true
@@ -132,7 +170,7 @@ func queen_death():
 	$Timer.start()
 	yield($Timer,"timeout")
 	var lines = ["I cannot attack her head on.","What a strong creature.","I need to stay back...","How can I avoid the attacks?","I know I can do this!","There must be a better way..."]
-	dialog(["[You feel well-rested]",lines[round(rand_range(-0.2,lines.size()+0.2))]])
+	dialog(["[You feel well-rested]",lines[round(rand_range(-0.2,lines.size()-0.8))]])
 
 func frog_death():
 	load_and_add_scene(level_0_path)

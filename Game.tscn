@@ -142,11 +142,11 @@ level_0_path = "res://levels/level0/Level0.tscn"
 
 [node name="AudioManager" type="Node2D" parent="."]
 
-[node name="BGMusic" type="AudioStreamPlayer" parent="AudioManager"]
+[node name="PrimaryBG" type="AudioStreamPlayer" parent="AudioManager"]
 
-[node name="Instant1" type="AudioStreamPlayer" parent="AudioManager"]
+[node name="Secondary" type="AudioStreamPlayer" parent="AudioManager"]
 
-[node name="Instant2" type="AudioStreamPlayer" parent="AudioManager"]
+[node name="Tween" type="Tween" parent="AudioManager"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = 3

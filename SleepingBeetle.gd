@@ -17,7 +17,7 @@ func _on_Area2D_body_entered(body):
 				line = "Lunara: I need to be hidden [X]"
 			else:
 				var lines = ["Lunara: I can't go any further...","Lunara: Useless beetle. I guess I’ll have to search somewhere else.", "Lunara: If only I had my cape."]
-				line = lines[round(rand_range(-0.2,lines.size()+0.2))]
+				line = lines[round(rand_range(-0.2,lines.size()-0.8))]
 			get_parent().emit_signal("dialog",line)
 		else:
 			$CollisionShape2D.disabled = true
