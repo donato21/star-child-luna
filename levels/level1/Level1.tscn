@@ -1,16 +1,25 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/level1/Level1.gd" type="Script" id=2]
 [ext_resource path="res://assets/levels/lvl1/ForestBackground.png" type="Texture" id=3]
 [ext_resource path="res://assets/levels/lvl1/ForestFG.png" type="Texture" id=4]
 [ext_resource path="res://levels/Camera2D.tscn" type="PackedScene" id=5]
+[ext_resource path="res://entities/enemies/Snake.tscn" type="PackedScene" id=6]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="BG" type="Sprite" parent="."]
 texture = ExtResource( 3 )
+
+[node name="Snake" parent="." instance=ExtResource( 6 )]
+position = Vector2( -837, 220 )
+scale = Vector2( 1.2, 1.2 )
+
+[node name="Snake2" parent="." instance=ExtResource( 6 )]
+position = Vector2( 961, 0 )
+scale = Vector2( 1.2, 1.2 )
 
 [node name="Root" type="Sprite" parent="."]
 modulate = Color( 0.541176, 0.462745, 0.423529, 1 )
