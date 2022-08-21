@@ -17,11 +17,6 @@ func _ready():
 	$SceneManager.add_child(scene)
 	scene.connect("load_scene", self, "load_and_add_scene")
 	scene.connect("play_audio", self, "track_manager")
-	scene.connect("game_over", self, "game_over")
-	scene.connect("dialog", self, "dialog")
-	scene.connect("add_inv", self, "add_to_inventory")
-	if scene.get_node("Player") != null:
-		scene.get_node("Player").inv = player_inv
 	$CanvasLayer/Animations.play("fade_in")
 	yield($CanvasLayer/Animations,"animation_finished")
 	$CanvasLayer/Black.visible = false
@@ -39,6 +34,9 @@ func load_and_add_scene(path : String):
 		scene.connect("play_audio", self, "track_manager")
 		scene.connect("game_over", self, "game_over")
 		scene.connect("dialog", self, "dialog")
+		scene.connect("add_inv", self, "add_to_inventory")
+		if scene.get_node("Player") != null:
+			scene.get_node("Player").inv = player_inv
 		$CanvasLayer/Animations.play("fade_in")
 		yield($CanvasLayer/Animations,"animation_finished")
 		$CanvasLayer/Black.visible = false

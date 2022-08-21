@@ -52,6 +52,7 @@ position = Vector2( 1886, 477 )
 scale = Vector2( 0.598068, 0.598068 )
 title = "cape"
 image = ExtResource( 8 )
+dialog = [ "\"[Press X to use the dark side of the moon and hide your presence]\"", "\"Lunara: I could use this to get past the sleeping beetle\"" ]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color( 1, 1, 1, 0.588235 )

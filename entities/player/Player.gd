@@ -16,10 +16,22 @@ var vel : Vector2 = Vector2.ZERO
 var flying = false
 var cloaked = false
 var inv = []
+var modulation
 
 func _ready():
 	$AnimatedSprite.scale.x = sprite_x_scale
 	$AnimatedSprite.play("idle")
+
+func _input(_event):
+	if Input.is_action_just_pressed("cape"):
+		if "cape" in inv:
+			if cloaked:
+				cloaked = false
+				set_modulate(modulation)
+			else:
+				cloaked = true
+				modulation = get_modulate()
+				set_modulate(Color(0,0,0,255))
 
 func _physics_process(_delta):
 	dir = Vector2.ZERO
