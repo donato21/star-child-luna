@@ -1,9 +1,168 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://levels/level2/Level2.gd" type="Script" id=1]
-[ext_resource path="res://levels/BGParallax.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/fonts/Silkscreen-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://assets/levels/lvl0/MOON.png" type="Texture" id=3]
+[ext_resource path="res://assets/menus/main/LunaraSprite.png" type="Texture" id=4]
+[ext_resource path="res://assets/levels/lvl0/MOUNTAINS.png" type="Texture" id=5]
+[ext_resource path="res://assets/particles/stars.png" type="Texture" id=6]
+[ext_resource path="res://assets/audio/Happy_Ending--.ogg" type="AudioStream" id=7]
+
+[sub_resource type="Curve" id=1]
+_data = [ Vector2( 0.00495049, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.504951, 0.5125 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=2]
+offsets = PoolRealArray( 0, 0.268156, 0.726257, 1 )
+colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="Gradient" id=3]
+offsets = PoolRealArray( 0, 0.0335196, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.164706, 0.164706, 0.513726, 0, 0.0792236, 0, 0.460938, 1 )
+
+[sub_resource type="GradientTexture2D" id=4]
+gradient = SubResource( 3 )
+fill_from = Vector2( 1, 0 )
+fill_to = Vector2( 1, 1 )
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 1, 1, 1, 0.290196, 1, 1, 1, 0.109804 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 38
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 25
+font_data = ExtResource( 2 )
 
 [node name="Level2" type="Node2D"]
 script = ExtResource( 1 )
+primary_audio = ExtResource( 7 )
 
-[node name="BGParallax" parent="." instance=ExtResource( 2 )]
+[node name="BGParallax" type="ParallaxBackground" parent="."]
+visible = false
+
+[node name="SkyParallax" type="ParallaxLayer" parent="BGParallax"]
+motion_scale = Vector2( 0.2, 1 )
+motion_mirroring = Vector2( 8000, 0 )
+
+[node name="MoonParallax" type="ParallaxLayer" parent="BGParallax"]
+motion_scale = Vector2( 0.5, 1 )
+motion_mirroring = Vector2( 8000, 0 )
+
+[node name="Moon" type="Sprite" parent="BGParallax/MoonParallax"]
+modulate = Color( 0.0666667, 0.0313726, 0.14902, 1 )
+position = Vector2( 1063, -142 )
+texture = ExtResource( 3 )
+
+[node name="MountainParallax" type="ParallaxLayer" parent="BGParallax"]
+motion_scale = Vector2( 0.7, 1 )
+motion_mirroring = Vector2( 8000, 0 )
+
+[node name="Mountains" type="Sprite" parent="BGParallax/MountainParallax"]
+modulate = Color( 0.239216, 0.192157, 0.368627, 1 )
+position = Vector2( 0, -326 )
+texture = ExtResource( 5 )
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="BGParallax"]
+motion_scale = Vector2( 0, 1 )
+motion_mirroring = Vector2( 8000, 0 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Sky" type="ColorRect" parent="CanvasLayer"]
+margin_left = -3638.0
+margin_top = -1961.0
+margin_right = 4362.0
+margin_bottom = 1039.0
+color = Color( 0.0509804, 0.0470588, 0.117647, 1 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="CanvasLayer/Sky"]
+position = Vector2( 3999.84, 2311.03 )
+scale = Vector2( 0.376693, 0.376693 )
+amount = 1000
+lifetime = 10.0
+lifetime_randomness = 0.21
+fixed_fps = 24
+texture = ExtResource( 6 )
+emission_shape = 1
+emission_sphere_radius = 2000.0
+gravity = Vector2( 0, 0 )
+scale_amount = 0.1
+scale_amount_random = 0.31
+scale_amount_curve = SubResource( 1 )
+color_ramp = SubResource( 2 )
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0.709804 )
+margin_left = -536.0
+margin_top = -65.0
+margin_right = 7464.0
+margin_bottom = 2935.0
+rect_scale = Vector2( 0.266259, 0.266259 )
+texture = SubResource( 4 )
+expand = true
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.415686, 0.407843, 0.752941, 1 )
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+margin_left = 501.0
+margin_right = 1101.0
+margin_bottom = 600.0
+texture = SubResource( 6 )
+expand = true
+
+[node name="LunaraSprite" type="Sprite" parent="CanvasLayer"]
+position = Vector2( 854, 331 )
+scale = Vector2( 0.235331, 0.235331 )
+texture = ExtResource( 4 )
+
+[node name="Thanks" type="Label" parent="CanvasLayer"]
+margin_left = 47.0
+margin_top = 46.0
+margin_right = 447.0
+margin_bottom = 202.0
+custom_fonts/font = SubResource( 7 )
+text = "Thank you for playing our demo!"
+align = 1
+autowrap = true
+
+[node name="SecretTitle" type="Label" parent="CanvasLayer"]
+margin_left = 70.0
+margin_top = 265.0
+margin_right = 420.0
+margin_bottom = 421.0
+custom_fonts/font = SubResource( 8 )
+text = "Your word is:"
+align = 1
+autowrap = true
+
+[node name="Secret" type="Label" parent="CanvasLayer"]
+margin_left = 47.0
+margin_top = 381.0
+margin_right = 447.0
+margin_bottom = 537.0
+custom_fonts/font = SubResource( 8 )
+align = 1
+autowrap = true
+
+[node name="CTA" type="Label" parent="CanvasLayer"]
+margin_left = 47.0
+margin_top = 475.0
+margin_right = 447.0
+margin_bottom = 631.0
+custom_fonts/font = SubResource( 9 )
+text = "Make sure to leave a comment with your word!"
+align = 1
+autowrap = true

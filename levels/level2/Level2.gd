@@ -10,3 +10,8 @@ signal game_over
 signal dialog
 signal add_inv
 
+func _ready():
+	var list = ["Moon","Luna","Beetle","Sun","Snake","Frog","Wings","Cape","Ring","Shield","Sleep","Awake","Flower","Blossom","Mountain","Reed","Vine","Cave","Water","Lake","Mirror","Waterfall","Wane","Wax","Crescent","Full","Sky","Flying Frog","Donate","Gale","Mark","Element"]
+	randomize()
+	var word = list[round(rand_range(0, list.size() - 1))]
+	$CanvasLayer/Secret.set_text(word)
