@@ -13,3 +13,8 @@ func _ready():
 
 func game_over(death):
 	emit_signal("game_over",death)
+
+
+func _on_Area2D_body_entered(body):
+	if body.name == "Player":
+		emit_signal("load_scene",left_level_path)
