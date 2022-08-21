@@ -19,8 +19,8 @@ offsets = PoolRealArray( 0, 0.268156, 0.726257, 1 )
 colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0, 0.592179, 1 )
-colors = PoolColorArray( 0, 0, 0, 0, 0.230062, 0.226502, 0.682171, 0.682171, 0.33725, 0.332031, 1, 1 )
+offsets = PoolRealArray( 0, 0.0335196, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.164706, 0.164706, 0.513726, 0, 0.0792236, 0, 0.460938, 1 )
 
 [sub_resource type="GradientTexture2D" id=4]
 gradient = SubResource( 3 )
@@ -69,12 +69,12 @@ scale_amount_curve = SubResource( 1 )
 color_ramp = SubResource( 2 )
 
 [node name="MoonParallax" type="ParallaxLayer" parent="BGParallax"]
-motion_scale = Vector2( 0.2, 1 )
+motion_scale = Vector2( 0.5, 1 )
 motion_mirroring = Vector2( 8000, 0 )
 
 [node name="Moon" type="Sprite" parent="BGParallax/MoonParallax"]
 modulate = Color( 0.0666667, 0.0313726, 0.14902, 1 )
-position = Vector2( 1457.93, -304 )
+position = Vector2( 1063, -142 )
 texture = ExtResource( 6 )
 
 [node name="MountainParallax" type="ParallaxLayer" parent="BGParallax"]
@@ -105,6 +105,7 @@ position = Vector2( 0, -1229 )
 texture = ExtResource( 7 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
+modulate = Color( 0.552941, 0.537255, 0.945098, 1 )
 position = Vector2( 0, -592 )
 
 [node name="FGParallax" type="ParallaxBackground" parent="."]

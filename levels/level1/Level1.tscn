@@ -14,11 +14,11 @@ script = ExtResource( 2 )
 texture = ExtResource( 3 )
 
 [node name="Snake" parent="." instance=ExtResource( 6 )]
-position = Vector2( -837, 220 )
+position = Vector2( -929, 217 )
 scale = Vector2( 1.2, 1.2 )
 
 [node name="Snake2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 961, 0 )
+position = Vector2( 859, -3.8147e-06 )
 scale = Vector2( 1.2, 1.2 )
 
 [node name="Root" type="Sprite" parent="."]
@@ -33,6 +33,14 @@ polygon = PoolVector2Array( -2438, -164, -1840, -47, -1187, 477, -1025, 563, -55
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -1879, -249 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color( 1, 1, 1, 0.588235 )
+margin_left = -2000.0
+margin_top = -1000.0
+margin_right = 2000.0
+margin_bottom = 1000.0
+color = Color( 0.101961, 0.0745098, 0.282353, 1 )
 
 [node name="Camera2D" parent="." instance=ExtResource( 5 )]
 

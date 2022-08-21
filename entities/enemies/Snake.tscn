@@ -23,8 +23,6 @@ radius = 543.663
 
 [node name="Snake" type="Node2D"]
 script = ExtResource( 3 )
-min_sleep_time = 5.0
-max_sleep_time = 10.0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -43 )
@@ -36,13 +34,14 @@ wait_time = 2.0
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]
+position = Vector2( 178, -88 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource( 2 )
 
-[node name="DeathCircle" type="Sprite" parent="."]
+[node name="DeathCircle" type="Sprite" parent="Area2D"]
 visible = false
-modulate = Color( 1, 0, 0, 0.52549 )
+modulate = Color( 1, 0.945098, 0.752941, 0.52549 )
 scale = Vector2( 12, 12 )
 texture = ExtResource( 4 )
 

@@ -15,3 +15,27 @@ main_menu_path = "res://menus/MainMenu.tscn"
 [node name="Instant1" type="AudioStreamPlayer" parent="AudioManager"]
 
 [node name="Instant2" type="AudioStreamPlayer" parent="AudioManager"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameOverAnimations" type="AnimationPlayer" parent="CanvasLayer"]
+
+[node name="HUD" type="Node2D" parent="CanvasLayer"]
+
+[node name="Text" type="Node2D" parent="CanvasLayer"]
+
+[node name="Black" type="Node2D" parent="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Black"]
+modulate = Color( 1, 1, 1, 0 )
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 1 )
+
+[node name="GameOver" type="Node2D" parent="CanvasLayer"]
+
+[node name="Snake" type="Node2D" parent="CanvasLayer/GameOver"]
+
+[node name="QueenBeetle" type="Node2D" parent="CanvasLayer/GameOver"]
+
+[node name="FlyingFrog" type="Node2D" parent="CanvasLayer/GameOver"]
