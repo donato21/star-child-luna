@@ -8,10 +8,9 @@ export var delay: float = 0
 export var awake_sound_path: String = ""
 export var sleep_sound_path: String = ""
 
-var sleeping = true
-
-signal play_audio
 signal game_over
+
+var sleeping = true
 
 func _on_SleepTimer_timeout():
 	if sleeping:

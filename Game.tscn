@@ -1,10 +1,142 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Game.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Black/ColorRect:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Black/ColorRect:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Black/ColorRect:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Black/ColorRect:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0 )
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade_in"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Black/ColorRect:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Black/ColorRect:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Black/ColorRect:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Black/ColorRect:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 0, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "fade_out"
+length = 2.0
+tracks/0/type = "bezier"
+tracks/0/path = NodePath("Black/ColorRect:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+tracks/1/type = "bezier"
+tracks/1/path = NodePath("Black/ColorRect:modulate:g")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+tracks/2/type = "bezier"
+tracks/2/path = NodePath("Black/ColorRect:modulate:b")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"points": PoolRealArray( 1, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
+tracks/3/type = "bezier"
+tracks/3/path = NodePath("Black/ColorRect:modulate:a")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"points": PoolRealArray( 0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0 ),
+"times": PoolRealArray( 0, 2 )
+}
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
 main_menu_path = "res://menus/MainMenu.tscn"
+level_0_path = "res://levels/level0/Level0.tscn"
 
 [node name="SceneManager" type="Node2D" parent="."]
 
@@ -17,17 +149,45 @@ main_menu_path = "res://menus/MainMenu.tscn"
 [node name="Instant2" type="AudioStreamPlayer" parent="AudioManager"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 3
 
-[node name="GameOverAnimations" type="AnimationPlayer" parent="CanvasLayer"]
+[node name="Animations" type="AnimationPlayer" parent="CanvasLayer"]
+anims/RESET = SubResource( 1 )
+anims/fade_in = SubResource( 2 )
+anims/fade_out = SubResource( 3 )
 
 [node name="HUD" type="Node2D" parent="CanvasLayer"]
 
 [node name="Text" type="Node2D" parent="CanvasLayer"]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Text"]
+margin_left = 204.0
+margin_top = 371.0
+margin_right = 804.0
+margin_bottom = 521.0
+color = Color( 1, 1, 1, 0.643137 )
+
+[node name="Button" type="Button" parent="CanvasLayer/Text/ColorRect"]
+margin_left = 521.0
+margin_top = 126.0
+margin_right = 590.0
+margin_bottom = 146.0
+text = "Continue"
+
+[node name="Label" type="Label" parent="CanvasLayer/Text/ColorRect"]
+margin_left = 14.0
+margin_top = 13.0
+margin_right = 584.0
+margin_bottom = 113.0
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+align = 1
+valign = 1
+autowrap = true
 
 [node name="Black" type="Node2D" parent="CanvasLayer"]
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/Black"]
-modulate = Color( 1, 1, 1, 0 )
 margin_right = 1024.0
 margin_bottom = 600.0
 color = Color( 0, 0, 0, 1 )
@@ -39,3 +199,7 @@ color = Color( 0, 0, 0, 1 )
 [node name="QueenBeetle" type="Node2D" parent="CanvasLayer/GameOver"]
 
 [node name="FlyingFrog" type="Node2D" parent="CanvasLayer/GameOver"]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.4
+one_shot = true
