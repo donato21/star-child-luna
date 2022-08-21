@@ -1,34 +1,16 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/Camera2D.tscn" type="PackedScene" id=2]
 [ext_resource path="res://levels/level0/Level0.gd" type="Script" id=3]
 [ext_resource path="res://assets/levels/lvl0/FG_REEDS.png" type="Texture" id=4]
 [ext_resource path="res://assets/levels/lvl0/FG_vines.png" type="Texture" id=5]
-[ext_resource path="res://assets/levels/lvl0/MOON.png" type="Texture" id=6]
+[ext_resource path="res://levels/BGParallax.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/levels/lvl0/GROUND-BACKGROUND.png" type="Texture" id=7]
 [ext_resource path="res://assets/levels/lvl0/FG_BUSH.png" type="Texture" id=8]
-[ext_resource path="res://assets/levels/lvl0/MOUNTAINS.png" type="Texture" id=9]
-[ext_resource path="res://assets/particles/stars.png" type="Texture" id=10]
 [ext_resource path="res://entities/enemies/SleepingBeetle.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/audio/moon/Moon Song.ogg" type="AudioStream" id=12]
 [ext_resource path="res://assets/audio/moon/Moon - Wind Sounds.ogg" type="AudioStream" id=13]
-
-[sub_resource type="Curve" id=1]
-_data = [ Vector2( 0.00495049, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.504951, 0.5125 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
-
-[sub_resource type="Gradient" id=2]
-offsets = PoolRealArray( 0, 0.268156, 0.726257, 1 )
-colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0 )
-
-[sub_resource type="Gradient" id=3]
-offsets = PoolRealArray( 0, 0.0335196, 1 )
-colors = PoolColorArray( 0, 0, 0, 0, 0.164706, 0.164706, 0.513726, 0, 0.0792236, 0, 0.460938, 1 )
-
-[sub_resource type="GradientTexture2D" id=4]
-gradient = SubResource( 3 )
-fill_from = Vector2( 1, 0 )
-fill_to = Vector2( 1, 1 )
 
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 200, 2000 )
@@ -46,64 +28,7 @@ secondary_audio = ExtResource( 13 )
 left_level_path = "res://levels/level2/Level2.tscn"
 right_level_path = "res://levels/level1/Level1.tscn"
 
-[node name="BGParallax" type="ParallaxBackground" parent="."]
-
-[node name="SkyParallax" type="ParallaxLayer" parent="BGParallax"]
-motion_scale = Vector2( 0.2, 1 )
-motion_mirroring = Vector2( 8000, 0 )
-
-[node name="Sky" type="ColorRect" parent="BGParallax/SkyParallax"]
-margin_left = -3999.84
-margin_top = -2729.03
-margin_right = 4000.16
-margin_bottom = 270.973
-color = Color( 0.0509804, 0.0470588, 0.117647, 1 )
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="BGParallax/SkyParallax/Sky"]
-position = Vector2( 3999.84, 2311.03 )
-amount = 1000
-lifetime = 10.0
-lifetime_randomness = 0.21
-fixed_fps = 24
-texture = ExtResource( 10 )
-emission_shape = 1
-emission_sphere_radius = 2000.0
-gravity = Vector2( 0, 0 )
-scale_amount = 0.1
-scale_amount_random = 0.31
-scale_amount_curve = SubResource( 1 )
-color_ramp = SubResource( 2 )
-
-[node name="MoonParallax" type="ParallaxLayer" parent="BGParallax"]
-motion_scale = Vector2( 0.5, 1 )
-motion_mirroring = Vector2( 8000, 0 )
-
-[node name="Moon" type="Sprite" parent="BGParallax/MoonParallax"]
-modulate = Color( 0.0666667, 0.0313726, 0.14902, 1 )
-position = Vector2( 1063, -142 )
-texture = ExtResource( 6 )
-
-[node name="MountainParallax" type="ParallaxLayer" parent="BGParallax"]
-motion_scale = Vector2( 0.7, 1 )
-motion_mirroring = Vector2( 8000, 0 )
-
-[node name="Mountains" type="Sprite" parent="BGParallax/MountainParallax"]
-modulate = Color( 0.239216, 0.192157, 0.368627, 1 )
-position = Vector2( 0, -326 )
-texture = ExtResource( 9 )
-
-[node name="ParallaxLayer" type="ParallaxLayer" parent="BGParallax"]
-motion_scale = Vector2( 0, 1 )
-motion_mirroring = Vector2( 8000, 0 )
-
-[node name="TextureRect" type="TextureRect" parent="BGParallax/ParallaxLayer"]
-modulate = Color( 1, 1, 1, 0.709804 )
-margin_left = -4000.0
-margin_top = -2729.0
-margin_right = 4000.0
-margin_bottom = 271.0
-texture = SubResource( 4 )
-expand = true
+[node name="BGParallax" parent="." instance=ExtResource( 6 )]
 
 [node name="Ground-Background" type="Sprite" parent="."]
 modulate = Color( 0.666667, 0.72549, 0.996078, 1 )

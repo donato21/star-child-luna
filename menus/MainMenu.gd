@@ -5,6 +5,11 @@ export var on_play_scene_path: String = "res://levels/Level1.tscn"
 
 signal load_scene
 
+func _input(event):
+	if event is InputEventKey || event is InputEventMouseButton:
+		$CanvasLayer/Cards.stop()
+		$CanvasLayer/Cards.play("clear")
+
 func _on_Play_pressed():
 	emit_signal("load_scene", on_play_scene_path)
 
