@@ -26,8 +26,8 @@ left_level_path = "res://levels/level0/Level0.tscn"
 texture = ExtResource( 3 )
 
 [node name="Snake" parent="." instance=ExtResource( 6 )]
-position = Vector2( -929, 217 )
-scale = Vector2( 1.2, 1.2 )
+position = Vector2( -694, 217 )
+scale = Vector2( -1.2, 1.2 )
 
 [node name="Snake2" parent="." instance=ExtResource( 6 )]
 position = Vector2( 859, -3.8147e-06 )

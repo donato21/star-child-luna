@@ -133,8 +133,8 @@ func queen_death():
 	yield(self,"scene_loaded")
 	$Timer.start()
 	yield($Timer,"timeout")
-	var lines = ["I cannot attack her head on","What a strong creature","I need to stay back","How can I avoid the attacks?","I know I can do this","There must be a better way..."]
-	dialog(["[You feel well-rested]",lines[round(rand_range(-0.4,lines.size()+0.4))]])
+	var lines = ["I cannot attack her head on.","What a strong creature.","I need to stay back...","How can I avoid the attacks?","I know I can do this!","There must be a better way..."]
+	dialog(["[You feel well-rested]",lines[round(rand_range(-0.2,lines.size()+0.2))]])
 
 func frog_death():
 	load_and_add_scene(level_0_path)

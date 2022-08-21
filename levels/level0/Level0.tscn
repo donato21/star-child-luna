@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://levels/Camera2D.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/levels/lvl0/FG_BUSH.png" type="Texture" id=8]
 [ext_resource path="res://assets/levels/lvl0/MOUNTAINS.png" type="Texture" id=9]
 [ext_resource path="res://assets/particles/stars.png" type="Texture" id=10]
+[ext_resource path="res://entities/enemies/SleepingBeetle.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0.00495049, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.504951, 0.5125 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
@@ -103,6 +104,9 @@ expand = true
 modulate = Color( 0.666667, 0.72549, 0.996078, 1 )
 position = Vector2( 0, -1229 )
 texture = ExtResource( 7 )
+
+[node name="SleepingBeetle" parent="." instance=ExtResource( 11 )]
+position = Vector2( -3007, 88 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 modulate = Color( 0.552941, 0.537255, 0.945098, 1 )

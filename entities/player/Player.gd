@@ -14,6 +14,7 @@ var dir : Vector2 = Vector2.ZERO
 var vel : Vector2 = Vector2.ZERO
 
 var flying = false
+var cloaked = false
 var inv = []
 
 func _ready():
