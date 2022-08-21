@@ -1,8 +1,10 @@
 extends KinematicBody2D
 
-export var walk_sound_path: String = ""
-export(String, "loop", "instant") var walk_sound_type = "instant"
 export var sprite_x_scale: int = 1
+export var walk_sound: AudioStream
+export var cape_sound: AudioStream
+export var ring_sound: AudioStream
+export var wing_sound: AudioStream
 
 var speed : int = 100
 var gravity : int = 100
@@ -21,10 +23,15 @@ var modulation
 func _ready():
 	$AnimatedSprite.scale.x = sprite_x_scale
 	$AnimatedSprite.play("idle")
+	if walk_sound != null:
+		$WalkAudio.set_stream(walk_sound)
 
 func _input(_event):
 	if Input.is_action_just_pressed("cape"):
 		if "cape" in inv:
+			if cape_sound != null:
+				$AudioStreamPlayer2D.set_stream(cape_sound)
+				$AudioStreamPlayer2D.play()
 			if cloaked:
 				cloaked = false
 				set_modulate(modulation)
@@ -47,6 +54,9 @@ func _physics_process(_delta):
 	else:
 		if ($RayCast2D.is_colliding() || is_on_floor()) && abs(vel.x) > 50:
 			$AnimatedSprite.play("walk")
+			if walk_sound != null && not $WalkAudio.is_playing():
+				$WalkAudio.set_pitch_scale(rand_range(0.8,1.2))
+				$WalkAudio.play()
 		else:
 			$AnimatedSprite.play("idle")
 	if is_on_floor() and dir.x == 0:

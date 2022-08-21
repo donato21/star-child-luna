@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/entities/snake/SnakeDandelionSleeping.png" type="Texture" id=1]
 [ext_resource path="res://assets/entities/snake/SnakeDandelionBlossomed.png" type="Texture" id=2]
 [ext_resource path="res://Snake.gd" type="Script" id=3]
 [ext_resource path="res://assets/particles/circle.png" type="Texture" id=4]
+[ext_resource path="res://assets/audio/enemies/Snake Sleeping.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/audio/enemies/Snake Wakes Up.ogg" type="AudioStream" id=6]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -23,6 +25,8 @@ radius = 543.663
 
 [node name="Snake" type="Node2D"]
 script = ExtResource( 3 )
+awake_sound = ExtResource( 6 )
+sleep_sound = ExtResource( 5 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -43 )
@@ -44,6 +48,9 @@ visible = false
 modulate = Color( 1, 0.945098, 0.752941, 0.52549 )
 scale = Vector2( 12, 12 )
 texture = ExtResource( 4 )
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+max_distance = 600.0
 
 [connection signal="timeout" from="Timer" to="." method="_on_SleepTimer_timeout"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
